@@ -1,0 +1,39 @@
+{
+  "name": "@litert/encodings",
+  "version": "1.0.0",
+  "description": "The buffer-based encoding utility method for node.js.",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepare": "npm run rebuild",
+    "build": "echo Using TypeScript && tsc -v && tsc -p .",
+    "build-watch": "echo Using TypeScript && tsc -v && tsc -w -p .",
+    "rebuild": "npm run clean && npm run lint && npm run build",
+    "test": "echo See directory sources/samples",
+    "clean": "rm -rf lib samples",
+    "lint": "tslint -p . -c tslint.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litert/encodings.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/litert/encodings.js/issues"
+  },
+  "homepage": "https://github.com/litert/encodings.js#readme",
+  "keywords": [
+    "litert",
+    "lrt",
+    "encodings"
+  ],
+  "author": "Angus.Fenying <fenying@litert.org> (https://fenying.net)",
+  "license": "Apache-2.0",
+  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
+  "devDependencies": {
+    "@types/node": "^9.6.38",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "@litert/core": "^1.0.1"
+  }
+}
