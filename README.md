@@ -11,19 +11,19 @@ Following types of encodings are supported:
 Name         | Description                                | Output
 -------------|--------------------------------------------|---------
 `base64`     | The standard BASE64 encoding string.       | string
-`base64url`  | The URL-safe BASE64 encoding string.    | string
+`base64url`  | The URL-safe BASE64 encoding string.       | string
 `buffer`     | Node.js Buffer.                            | Buffer
 `hex`        | The hexadecimal encoding string.           | string
 `utf8`       | The UTF-8 encoding string.                 | string
-`uri`        | The URL-safe encoding string.           | string
-`strict_uri` | The extended URL-safe encoding string.  | string
+`uri`        | The URL-safe encoding string.              | string
+`strict_uri` | The extended URL-safe encoding string.     | string
 
 > - Encoding `strict_uri` is based on `uri`, but all special chars including
 > `"-"`, `"."`, `"_"`, `"!"`, `"*"`, `"("`, `")"`, `"~"`, `"'"`
 > will be escaped.
 >
->   > NOTE: The data of `strict_uri` encoding, could be simply decoded by function
->   > `decodeURIComponent`.
+>   > NOTE: The data of `strict_uri` encoding, could be simply decoded by
+>   > function `decodeURIComponent`.
 >
 > - Encoding `base64url` is based on `base64`, while charactor 
 > `"="`, `"+"`, `"/"`

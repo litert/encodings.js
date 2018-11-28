@@ -1,6 +1,6 @@
 {
   "name": "@litert/encodings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The buffer-based encoding utility method for node.js.",
   "main": "lib/index.js",
   "scripts": {
@@ -34,6 +34,6 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {
-    "@litert/core": "^1.0.1"
+    "@litert/core": "^1.0.2"
   }
 }

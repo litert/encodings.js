@@ -16,7 +16,10 @@
 
 import * as Core from "@litert/core";
 
-const Errors = Core.getDefaultErrorHub();
+/**
+ * The error hub of encodings module.
+ */
+export const Errors = Core.createErrorHub("@litert/encodings");
 
 /**
  * E_INVALID_ENCODING
@@ -61,11 +64,11 @@ export function getEncodings(): Encodings[] {
 }
 
 /**
- * Convert a string from BASE64 to BASE64-URL-Escaped encoding.
+ * Convert a string from BASE64 to BASE64-URL-Safe encoding.
  *
  * @param {string} base64 The BASE64 encoding string to be converted.
  *
- * @returns {string} returns the BASE64-URL-Escaped encoding result of input.
+ * @returns {string} returns the BASE64-URL-Safe encoding result of input.
  */
 export function base64UrlEncode(base64: string): string {
 
@@ -76,16 +79,16 @@ export function base64UrlEncode(base64: string): string {
 }
 
 /**
- * Convert a string to Strict-URL-Escaped encoding.
+ * Convert a string to Strict-URL-Safe encoding.
  *
  * > All special chars including `-`, `.`, `_`, `!`, `*`, `(`, `)`, `~`, `'`
  * > will be escaped.
  *
- * NOTE: Decode the Strict-URL-Escaped encoding string by `decodeURIComponent`.
+ * NOTE: Decode the Strict-URL-Safe encoding string by `decodeURIComponent`.
  *
  * @param {string} text The string to be converted.
  *
- * @returns {string} returns the Strict-URL-Escaped encoding result of input.
+ * @returns {string} returns the Strict-URL-Safe encoding result of input.
  */
 export function encodeURIStrictly(text: string): string {
 
@@ -100,9 +103,9 @@ function _encodeURIStrictly(text: string): string {
 }
 
 /**
- * Convert a string from BASE64-URL-Escaped encoding to BASE64.
+ * Convert a string from BASE64-URL-Safe encoding to BASE64.
  *
- * @param {string} base64 The BASE64-URL-Escaped encoding string to be converted.
+ * @param {string} base64 The BASE64-URL-Safe encoding string to be converted.
  *
  * @returns {string} returns the BASE64 encoding result of input.
  */
