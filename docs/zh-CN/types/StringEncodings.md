@@ -1,4 +1,4 @@
-# 类型 BinaryEncodings
+# 类型 StringEncodings
 
 该值类型用于约束字符串类型编码名称，
 
