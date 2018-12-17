@@ -24,18 +24,16 @@ const data: Record<Enc.Encodings, any> = {} as any;
 
 for (let ec of Enc.getEncodings()) {
 
-    data[ec] = Enc.convert(RAW_DATA, ec as any, "utf8");
+    data[ec] = Enc.convert(RAW_DATA, ec, "utf8");
 }
 
 for (let input of Enc.getEncodings()) {
 
     for (let output of Enc.getEncodings()) {
 
-        const outData = Enc.convert.apply(
-            null,
-            [data[input], output, input]
-        );
+        const outData = Enc.convert(data[input], output, input);
 
+        console.info(`From ${input} to ${output}:`);
         if (0 === Enc.compare(
             outData,
             data[input],
@@ -43,11 +41,11 @@ for (let input of Enc.getEncodings()) {
             input
         )) {
 
-            console.info(`From ${input} to ${output}: Okay`);
+            console.info(`  Okay\n`);
         }
         else {
 
-            console.error(`From ${input} to ${output}: Failed`);
+            console.error(`  Failed\n`);
         }
     }
 }

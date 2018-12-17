@@ -1,6 +1,6 @@
 {
   "name": "@litert/encodings",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The buffer-based encoding utility method for node.js.",
   "main": "lib/index.js",
   "scripts": {

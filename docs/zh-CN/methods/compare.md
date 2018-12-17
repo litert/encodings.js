@@ -15,10 +15,13 @@
  * @param {string}          aEnc    第一份数据的编码
  * @param {string}          bEnc    第二份数据的编码
  */
-function compare(
-    a: string | Buffer,
-    b: string | Buffer,
-    aEnc: Encodings,
-    bEnc: Encodings,
+function compare<
+    A extends Encodings,
+    B extends Encodings
+>(
+    a: A extends BinaryEncodings ? Buffer : string,
+    b: B extends BinaryEncodings ? Buffer : string,
+    aEnc: A,
+    bEnc: B,
 ): number;
 ```

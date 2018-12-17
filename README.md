@@ -12,6 +12,7 @@ Name         | Description                                | Output
 -------------|--------------------------------------------|---------
 `base64`     | The standard BASE64 encoding string.       | string
 `base64url`  | The URL-safe BASE64 encoding string.       | string
+`base642x`   | The BASE62x encoding string.               | string
 `buffer`     | Node.js Buffer.                            | Buffer
 `hex`        | The hexadecimal encoding string.           | string
 `utf8`       | The UTF-8 encoding string.                 | string

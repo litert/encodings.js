@@ -6,11 +6,13 @@
 - [base64UrlEncode](./methods/base64UrlEncode.md)
 - [compare](./methods/compare.md)
 - [convert](./methods/convert.md)
+- [createBase62xEncoder](./methods/createBase62xEncoder.md)
 - [encodeURIStrictly](./methods/encodeURIStrictly.md)
 - [getEncodings](./methods/getEncodings.md)
 
 ## 类型
 
 - [BinaryEncodings](./types/BinaryEncodings.md)
+- [BinaryEncodings](./types/BinaryEncodings.md)
 - [Encodings](./types/Encodings.md)
-- [StringEncodings](./types/StringEncodings.md)
+- [IBase62xEncoder](./types/IBase62xEncoder.md)

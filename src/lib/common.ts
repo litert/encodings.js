@@ -14,10 +14,22 @@
  * limitations under the License.
  */
 
-export * from "./errors";
-export * from "./base62x";
-export * from "./base64url";
-export * from "./common";
-export * from "./compare";
-export * from "./convert";
-export { encodeURIStrictly } from "./strict_uri";
+export type BinaryEncodings = "buffer";
+
+export type StringEncodings = "base64" | "base64url" | "hex" | "strict_uri" |
+                              "utf8" | "uri" | "base62x";
+
+export type Encodings = BinaryEncodings | StringEncodings;
+
+/**
+ * Get the list of supported encodings.
+ *
+ * @returns {string[]} Returns a the list of supported encodings.
+ */
+export function getEncodings(): Encodings[] {
+
+    return [
+        "base64", "base64url", "buffer", "hex", "strict_uri",
+        "utf8", "uri", "base62x"
+    ];
+}

@@ -7,36 +7,9 @@
 ## 声明
 
 ```ts
-interface IConvertMethod {
-
-    /**
-     * @param {Buffer} data     要被转换的数据
-     * @param {string} output   目标编码名称
-     * @param {string} input    当前编码名称
-     */
-    (data: Buffer, output: BinaryEncodings, input?: BinaryEncodings): Buffer;
-
-    /**
-     * @param {Buffer} data     要被转换的数据
-     * @param {string} output   目标编码名称
-     * @param {string} input    当前编码名称
-     */
-    (data: Buffer, output: StringEncodings, input?: BinaryEncodings): string;
-
-    /**
-     * @param {string} data     要被转换的数据
-     * @param {string} output   目标编码名称
-     * @param {string} input    当前编码名称
-     */
-    (data: string, output: BinaryEncodings, input: StringEncodings): Buffer;
-
-    /**
-     * @param {string} data     要被转换的数据
-     * @param {string} output   目标编码名称
-     * @param {string} input    当前编码名称
-     */
-    (data: string, output: StringEncodings, input: StringEncodings): string;
-}
-
-declare const convert: IConvertMethod;
+function convert<I extends Encodings, O extends Encodings>(
+    data: I extends BinaryEncodings ? Buffer : string,
+    output: O,
+    input: I
+): O extends BinaryEncodings ? Buffer : string
 ```

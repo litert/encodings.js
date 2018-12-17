@@ -19,7 +19,8 @@
         "object-literal-key-quotes": [false],
         "ban-types": false,
         "only-arrow-functions": false,
-        "no-unused-expression": false
+        "no-unused-expression": false,
+        "no-bitwise": false
     },
     "rulesDirectory": []
 }
