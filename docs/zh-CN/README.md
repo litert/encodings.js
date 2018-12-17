@@ -13,6 +13,6 @@
 ## 类型
 
 - [BinaryEncodings](./types/BinaryEncodings.md)
-- [BinaryEncodings](./types/BinaryEncodings.md)
 - [Encodings](./types/Encodings.md)
 - [IBase62xEncoder](./types/IBase62xEncoder.md)
+- [StringEncodings](./types/StringEncodings.md)
