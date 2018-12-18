@@ -201,17 +201,13 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
 
         case "buffer":
 
-            return Buffer.from(
-                base62x.decode(data as string).toString()
-            ) as any;
+            return base62x.decode(data as string) as any;
 
         case "base64":
         case "hex":
         case "utf8":
 
-            return Buffer.from(
-                base62x.decode(data as string).toString()
-            ).toString(oE) as any;
+            return base62x.decode(data as string).toString(oE) as any;
 
         default:
 
