@@ -17,6 +17,7 @@
 export * from "./errors";
 export * from "./base62x";
 export * from "./base64url";
+export * from "./urlencode";
 export * from "./common";
 export * from "./compare";
 export * from "./convert";

@@ -6,5 +6,5 @@
 
 ```ts
 type StringEncodings = "base64" | "base64url" | "hex" | "strict_uri" |
-                       "utf8" | "uri" | "base62x";
+                       "utf8" | "uri" | "base62x" | "urlencode";
 ```

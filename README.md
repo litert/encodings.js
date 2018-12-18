@@ -8,27 +8,48 @@
 The buffer-based encoding utility method for node.js.
 Following types of encodings are supported:
 
-Name         | Description                                | Output
--------------|--------------------------------------------|---------
-`base64`     | The standard BASE64 encoding string.       | string
-`base64url`  | The URL-safe BASE64 encoding string.       | string
-`base642x`   | The BASE62x encoding string.               | string
-`buffer`     | Node.js Buffer.                            | Buffer
-`hex`        | The hexadecimal encoding string.           | string
-`utf8`       | The UTF-8 encoding string.                 | string
-`uri`        | The URL-safe encoding string.              | string
-`strict_uri` | The extended URL-safe encoding string.     | string
+Name         | Description                     | Output | Binary-Safe
+-------------|---------------------------------|:------:|:-----------:
+`base64`     | The standard BASE64 encoding.   | string | Yes
+`base64url`  | The URL-safe BASE64 encoding.   | string | Yes
+`base62x`    | The BASE62x encoding.           | string | Yes
+`buffer`     | Node.js Buffer.                 | Buffer | Yes
+`hex`        | The hexadecimal encoding.       | string | Yes
+`utf8`       | The UTF-8 encoding.             | string | No
+`urlencode`  | The purely URL-safe encoding.   | string | Yes
+`uri`        | The URL-safe encoding.          | string | No
+`strict_uri` | The extended URL-safe encoding. | string | No
 
-> - Encoding `strict_uri` is based on `uri`, but all special chars including
+> ### Encoding `urlencode`
+>
+> This is a real urlencode implement, it will escape all bytes as `%xx` format, 
+> excepting `A-Z`, `a-z` and `0-9`. **This is a binary-safe encoding.**
+>
+> > **Binary-safe** means it could work with binary data perfectly, without
+> > gibberish. And it's all the same below.
+>
+> ### Encoding `uri`
+>
+> This is a simple reference of method `encodeURIComponent`, so it works as
+> method `encodeURIComponent` does. **And it's not a binary-safe encoding.**
+>
+> ### Encoding `strict_uri`
+>
+> This is based on `uri`, but all special chars including
 > `"-"`, `"."`, `"_"`, `"!"`, `"*"`, `"("`, `")"`, `"~"`, `"'"`
-> will be escaped.
+> will be escaped. **However, it's still not a binary-safe encoding.**
 >
->   > NOTE: The data of `strict_uri` encoding, could be simply decoded by
->   > function `decodeURIComponent`.
+> > NOTE: The data of `strict_uri` encoding, could be simply decoded by
+> > function `decodeURIComponent`.
 >
-> - Encoding `base64url` is based on `base64`, while charactor 
-> `"="`, `"+"`, `"/"`
-> will be replaced with URL-safe charactors.
+> ### Encoding `base64url`
+>
+> This is based on `base64`, while charactors `"="`, `"+"`, `"/"` will be
+> replaced with URL-safe charactors. **This is a binary-safe encoding.**
+>
+> ### Encoding `base62x`
+>
+> This is a variation of `base64`. **And it is a binary-safe encoding.**
 >
 
 

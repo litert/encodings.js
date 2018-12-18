@@ -18,13 +18,16 @@
 
 import * as Enc from "../lib";
 
-const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
+const RAW_DATA = Buffer.concat([
+    Buffer.from("Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'"),
+    Buffer.from([0, 129, 135, 123, 254, 233, 156, 199])
+]);
 
 const data: Record<Enc.Encodings, any> = {} as any;
 
 for (let ec of Enc.getEncodings()) {
 
-    data[ec] = Enc.convert(RAW_DATA, ec, "utf8");
+    data[ec] = Enc.convert(RAW_DATA, ec, "buffer");
 }
 
 for (let input of Enc.getEncodings()) {

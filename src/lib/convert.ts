@@ -18,6 +18,7 @@ import * as Errors from "./errors";
 import * as C from "./common";
 import * as Base64Url from "./base64url";
 import * as StrickUri from "./strict_uri";
+import * as URLEncode from "./urlencode";
 import * as Base62x from "./base62x";
 
 const base62x = Base62x.createBase62xEncoder();
@@ -69,9 +70,17 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
 
             return encodeURIComponent((data as Buffer).toString()) as any;
 
+        case "urlencode":
+
+            return URLEncode.urlEncode(data) as any;
+
         case "strict_uri":
 
             return StrickUri.encodeURIStrictly((data as Buffer).toString()) as any;
+
+        case "base62x":
+
+            return base62x.encode(data) as any;
 
         case "base62x":
 
@@ -98,6 +107,12 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
         case "buffer":
 
             return Buffer.from(Base64Url.base64UrlDecode(data as string), "base64") as any;
+
+        case "urlencode":
+
+            return URLEncode.urlEncode(
+                Buffer.from(Base64Url.base64UrlDecode(data as string), "base64")
+            ) as any;
 
         case "base62x":
 
@@ -148,9 +163,15 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
 
         case "base62x":
 
-            return base62x.encode(Buffer.from(
+            return base62x.encode(
                 decodeURIComponent(data as string)
-            )) as any;
+            ) as any;
+
+        case "urlencode":
+
+            return URLEncode.urlEncode(
+                decodeURIComponent(data as string)
+            ) as any;
 
         case "uri": // from strict_uri
 
@@ -189,11 +210,15 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
                 data as string
             ).toString("base64")) as any;
 
-        case "uri": // from strict_uri
+        case "uri":
 
             return encodeURIComponent(base62x.decode(data as string).toString()) as any;
 
-        case "strict_uri": // from uri
+        case "urlencode":
+
+            return URLEncode.urlEncode(base62x.decode(data as string)) as any;
+
+        case "strict_uri":
 
             return StrickUri.encodeURIStrictly(
                 base62x.decode(data as string).toString()
@@ -208,6 +233,49 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
         case "utf8":
 
             return base62x.decode(data as string).toString(oE) as any;
+
+        default:
+
+            throw new Errors.E_INVALID_ENCODING({
+                "message": `The output encoding "${oE}" is invalid.`,
+                "metadata": { input: iE, output: oE }
+            });
+        }
+
+    case "urlencode":
+
+        switch (oE) {
+        case "base64url":
+
+            return Base64Url.base64UrlEncode(URLEncode.urlDecode(
+                data as string
+            ).toString("base64")) as any;
+
+        case "uri":
+
+            return encodeURIComponent(
+                URLEncode.urlDecode(data as string).toString()
+            ) as any;
+
+        case "base62x":
+
+            return base62x.encode(URLEncode.urlDecode(data as string)) as any;
+
+        case "strict_uri":
+
+            return StrickUri.encodeURIStrictly(
+                URLEncode.urlDecode(data as string).toString()
+            ) as any;
+
+        case "buffer":
+
+            return URLEncode.urlDecode(data as string) as any;
+
+        case "base64":
+        case "hex":
+        case "utf8":
+
+            return URLEncode.urlDecode(data as string).toString(oE) as any;
 
         default:
 
@@ -237,6 +305,13 @@ export function convert<I extends C.Encodings, O extends C.Encodings>(
         case "base62x":
 
             return base62x.encode(Buffer.from(
+                data as string,
+                iE
+            )) as any;
+
+        case "urlencode":
+
+            return URLEncode.urlEncode(Buffer.from(
                 data as string,
                 iE
             )) as any;

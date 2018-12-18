@@ -17,7 +17,7 @@
 export type BinaryEncodings = "buffer";
 
 export type StringEncodings = "base64" | "base64url" | "hex" | "strict_uri" |
-                              "utf8" | "uri" | "base62x";
+                              "utf8" | "uri" | "base62x" | "urlencode";
 
 export type Encodings = BinaryEncodings | StringEncodings;
 
@@ -30,6 +30,6 @@ export function getEncodings(): Encodings[] {
 
     return [
         "base64", "base64url", "buffer", "hex", "strict_uri",
-        "utf8", "uri", "base62x"
+        "utf8", "uri", "base62x", "urlencode"
     ];
 }

@@ -9,6 +9,8 @@
 - [createBase62xEncoder](./methods/createBase62xEncoder.md)
 - [encodeURIStrictly](./methods/encodeURIStrictly.md)
 - [getEncodings](./methods/getEncodings.md)
+- [urlDecode](./methods/urlDecode.md)
+- [urlEncode](./methods/urlEncode.md)
 
 ## 类型
 

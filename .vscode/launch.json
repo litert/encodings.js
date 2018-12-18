@@ -63,6 +63,18 @@
                 "${workspaceFolder}/lib/*.js",
                 "${workspaceFolder}/samples/*.js"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[LiteRT/Encodings.js] Sample 06 - URL Encodings",
+            "program": "${workspaceFolder}/src/samples/06-urlencode.ts",
+            "sourceMaps": true,
+            "cwd": "${workspaceFolder}",
+            "outFiles": [
+                "${workspaceFolder}/lib/*.js",
+                "${workspaceFolder}/samples/*.js"
+            ]
         }
     ]
 }
