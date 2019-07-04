@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Angus.Fenying
+ * Copyright 2019 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-export * from "./errors";
-export * from "./base62x";
-export * from "./base64url";
-export * from "./urlencode";
-export * from "./common";
-export * from "./compare";
-export * from "./convert";
-export { encodeURIStrictly } from "./strict_uri";
+export * from "./encodings/base62";
+export * from "./encodings/base64";
+export * from "./encodings/base64url";
+export * from "./encodings/hex";
+export * from "./encodings/strict_uri";
+export * from "./encodings/urlencode";

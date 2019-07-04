@@ -8,17 +8,14 @@
 The buffer-based encoding utility method for node.js.
 Following types of encodings are supported:
 
-Name         | Description                     | Output | Binary-Safe
--------------|---------------------------------|:------:|:-----------:
-`base64`     | The standard BASE64 encoding.   | string | Yes
-`base64url`  | The URL-safe BASE64 encoding.   | string | Yes
-`base62x`    | The BASE62x encoding.           | string | Yes
-`buffer`     | Node.js Buffer.                 | Buffer | Yes
-`hex`        | The hexadecimal encoding.       | string | Yes
-`utf8`       | The UTF-8 encoding.             | string | No
-`urlencode`  | The purely URL-safe encoding.   | string | Yes
-`uri`        | The URL-safe encoding.          | string | No
-`strict_uri` | The extended URL-safe encoding. | string | No
+Name         | Description                     | Binary-Safe
+-------------|---------------------------------|:-----------:
+`base64`     | The standard BASE64 encoding.   | Yes
+`base64url`  | The URL-safe BASE64 encoding.   | Yes
+`base62x`    | The BASE62x encoding.           | Yes
+`hex`        | The hexadecimal encoding.       | Yes
+`urlencode`  | The purely URL-safe encoding.   | Yes
+`strict_uri` | The extended URL-safe encoding. | No
 
 > ### Encoding `urlencode`
 >
@@ -59,22 +56,41 @@ Name         | Description                     | Output | Binary-Safe
 npm install @litert/encodings --save
 ```
 
-## Sample
+## Usage
 
 ```ts
 import * as Enc from "@litert/encodings";
 
-Enc.convert("hello world", "buffer"); // From string to buffer.
-Enc.convert("hello world", "base64"); // From string to base64 string.
-Enc.convert("hello world", "base64url"); // From string to base64-url-escaped.
-Enc.convert(Buffer.from("hello world"), "uri"); // From buffer to base64-url-escaped.
+const hex = Enc.stringToHex("hello world");             // Encode a string into hex
+const b62 = Enc.stringToBase62("hello world");          // Encode a string into BASE62
+const b64 = Enc.stringToBase64("hello world");          // Encode a string into BASE64
+const b64url = Enc.stringToBase64Url("hello world");    // Encode a string into BASE64URL
+const url = Enc.stringToUrlencode("hello world");       // Encode a string into URL
+const strict = Enc.stringToStrictUri("hello world");    // Encode a string into Strict-URI
+
+// Also, buffer is accepted as input.
+
+Enc.bufferToHex(Buffer.from("hello world"));
+Enc.bufferToBase62(Buffer.from("hello world"));
+Enc.bufferToBase64(Buffer.from("hello world"));
+Enc.bufferToBase64Url(Buffer.from("hello world"));
+Enc.bufferToUrlencode(Buffer.from("hello world"));
+Enc.bufferToStrictUri(Buffer.from("hello world"));
+
+Enc.stringFromHex(hex);                         // Decode a hex-encoded data as a string
+Enc.stringFromBase62(b62);                      // Decode a BASE62-encoded data as a string
+Enc.stringFromBase64(b64);                      // Decode a BASE64-encoded data as a string
+Enc.stringFromBase64Url(b64url);                // Decode a BASE64URL-encoded data as a string
+Enc.stringFromUrlencode(url);                   // Decode a urlencoded data as a string
+Enc.stringFromStrictUri(strict);                // Decode a Strict-URI-encoded data as a string
+
+Enc.bufferFromHex(hex);
+Enc.bufferFromBase62(b62);
+Enc.bufferFromBase64(b64);
+Enc.bufferFromBase64Url(b64url);
+Enc.bufferFromUrlencode(url);
+Enc.bufferFromStrictUri(strict);
 ```
-
-For more details, see documents or samples.
-
-## Documents
-
-- [简体中文版](./docs/zh-CN/README.md)
 
 ## License
 

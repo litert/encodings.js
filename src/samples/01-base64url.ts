@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Angus.Fenying
+ * Copyright 2019 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,18 @@ import * as Enc from "../lib";
 
 const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
 
-const base64 = Enc.convert(RAW_DATA, "base64", "utf8");
+const base64 = Enc.stringToBase64(RAW_DATA);
 
 console.info(`Base64:       ${base64}`);
 
 const base64url = Enc.base64UrlEncode(base64);
 
-console.info(`Base64Url:    ${base64url}`);
+console.info(`Base64Url:    ${Enc.base64UrlEncode(base64)}`);
+
+console.info(`Base64Url:    ${Enc.stringToBase64Url(RAW_DATA)}`);
 
 console.info(`Base64:       ${Enc.base64UrlDecode(base64url)}`);
+
+console.info(`RawData:      ${Enc.stringFromBase64(base64)}`);
+
+console.info(`RawData:      ${Enc.stringFromBase64Url(base64url)}`);

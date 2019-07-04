@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-// tslint:disable:no-console
+export function stringToBase64(data: string): string {
 
-import * as Enc from "../lib";
+    return Buffer.from(data).toString("base64");
+}
 
-const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
+export function stringFromBase64(data: string): string {
 
-const base62 = Enc.stringToBase62(RAW_DATA);
+    return Buffer.from(data, "base64").toString();
+}
 
-console.info(`Base62:       ${base62}`);
+export function bufferToBase64(data: Buffer): string {
 
-console.info(`RawData:      ${Enc.stringFromBase62(base62)}`);
+    return data.toString("base64");
+}
+
+export function bufferFromBase64(data: string): Buffer {
+
+    return Buffer.from(data, "base64");
+}

@@ -20,8 +20,8 @@ import * as Enc from "../lib";
 
 const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
 
-const base62 = Enc.stringToBase62(RAW_DATA);
+const hex = Enc.stringToHex(RAW_DATA);
 
-console.info(`Base62:       ${base62}`);
+console.info(`Hex:          ${hex}`);
 
-console.info(`RawData:      ${Enc.stringFromBase62(base62)}`);
+console.info(`RawData:      ${Enc.stringFromHex(hex)}`);

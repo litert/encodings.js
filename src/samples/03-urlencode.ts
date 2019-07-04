@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Angus.Fenying
+ * Copyright 2019 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,27 @@
  */
 
 // tslint:disable:no-console
-
 import * as Enc from "../lib";
+import * as $Crypto from "crypto";
 
-const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
+const TEST_DATA: any[] = [
+    ..."-".repeat(100).split("").map((x, i) => $Crypto.randomBytes(i)),
+    Buffer.from("你好", "utf8")
+];
 
-for (let ec of Enc.getEncodings()) {
+for (let i = 0; i < TEST_DATA.length; i++) {
 
-    console.info(ec.padEnd(10), Enc.convert(RAW_DATA, ec as any, "utf8"));
+    const encoded = Enc.bufferToUrlencode(TEST_DATA[i]);
+    const decoded = Enc.bufferFromUrlencode(encoded);
+
+    console.info(`[${i.toString().padStart(3, "0")}] ${encoded}`);
+
+    if (!decoded.compare(TEST_DATA[i])) {
+
+        console.info(`  Okay`);
+    }
+    else {
+
+        console.error(`  Failed`);
+    }
 }

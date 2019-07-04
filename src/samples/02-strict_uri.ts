@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Angus.Fenying
+ * Copyright 2019 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,16 @@ import * as Enc from "../lib";
 
 const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
 
+const uri = encodeURIComponent(RAW_DATA);
+
+const strict = Enc.stringToStrictUri(RAW_DATA);
+
 console.info(`Raw:      ${RAW_DATA}`);
 
-const uri = Enc.convert(RAW_DATA, "uri", "utf8");
-
 console.info(`Uri:      ${uri}`);
-
-const strict = Enc.encodeURIStrictly(RAW_DATA);
 
 console.info(`Strict:   ${strict}`);
 
 console.info(`Decoded:  ${decodeURIComponent(strict)}`);
+
+console.info(`Decoded:  ${Enc.stringFromStrictUri(strict)}`);

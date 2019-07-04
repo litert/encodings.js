@@ -31,8 +31,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 03 - Convert API",
-            "program": "${workspaceFolder}/src/samples/03-convert.ts",
+            "name": "[LiteRT/Encodings.js] Sample 03 - URL Encodings",
+            "program": "${workspaceFolder}/src/samples/03-urlencode.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
@@ -43,8 +43,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 04 - Compare API",
-            "program": "${workspaceFolder}/src/samples/04-compare.ts",
+            "name": "[LiteRT/Encodings.js] Sample 04 - Hex API",
+            "program": "${workspaceFolder}/src/samples/04-hex.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
@@ -57,18 +57,6 @@
             "request": "launch",
             "name": "[LiteRT/Encodings.js] Sample 05 - Base62x Encodings",
             "program": "${workspaceFolder}/src/samples/05-base62x.ts",
-            "sourceMaps": true,
-            "cwd": "${workspaceFolder}",
-            "outFiles": [
-                "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/samples/*.js"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 06 - URL Encodings",
-            "program": "${workspaceFolder}/src/samples/06-urlencode.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [

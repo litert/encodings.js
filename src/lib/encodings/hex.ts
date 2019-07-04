@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-// tslint:disable:no-console
+export function stringToHex(data: string): string {
 
-import * as Enc from "../lib";
+    return Buffer.from(data).toString("hex");
+}
 
-const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
+export function stringFromHex(data: string): string {
 
-const base62 = Enc.stringToBase62(RAW_DATA);
+    return Buffer.from(data, "hex").toString();
+}
 
-console.info(`Base62:       ${base62}`);
+export function bufferToHex(data: Buffer): string {
 
-console.info(`RawData:      ${Enc.stringFromBase62(base62)}`);
+    return data.toString("hex");
+}
+
+export function bufferFromHex(data: string): Buffer {
+
+    return Buffer.from(data, "hex");
+}

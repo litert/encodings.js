@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Angus.Fenying
+ * Copyright 2019 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-export function _encodeURIStrictly(text: string): string {
-
-    return text.replace(/([-!*()~'\._])/g, function(s): string {
-        return "%" + s.charCodeAt(0).toString(16).padStart(2, "0");
-    });
-}
-
 /**
  * Convert a string to Strict-URL-Safe encoding.
  *
@@ -33,7 +26,11 @@ export function _encodeURIStrictly(text: string): string {
  *
  * @returns {string} returns the Strict-URL-Safe encoding result of input.
  */
-export function encodeURIStrictly(text: string): string {
+export function stringToStrictUri(text: string): string {
 
-    return _encodeURIStrictly(encodeURIComponent(text));
+    return encodeURIComponent(text).replace(/([-!*()~'\._])/g, function(s): string {
+        return "%" + s.charCodeAt(0).toString(16).padStart(2, "0");
+    });
 }
+
+export const stringFromStrictUri = decodeURIComponent;

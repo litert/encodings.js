@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Angus.Fenying
+ * Copyright 2019 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-/**
- * The charactors escaped by BASE65Url encoding.
- */
-export const BASE64URL_ESCAPED_CHARS = "=+/";
+import * as Base64 from "./base64";
 
 /**
  * Convert a string from BASE64 to BASE64-URL-Safe encoding.
@@ -49,4 +46,24 @@ export function base64UrlDecode(urlbase64: string): string {
         .replace(/\-/g, "+")
         .replace(/_/g, "/")
         .padEnd(urlbase64.length + (r ? (4 - r) : 0), "=");
+}
+
+export function stringToBase64Url(data: string): string {
+
+    return base64UrlEncode(Base64.stringToBase64(data));
+}
+
+export function stringFromBase64Url(data: string): string {
+
+    return Base64.stringFromBase64(base64UrlDecode(data));
+}
+
+export function bufferToBase64Url(data: Buffer): string {
+
+    return base64UrlEncode(Base64.bufferToBase64(data));
+}
+
+export function bufferFromBase64Url(data: string): Buffer {
+
+    return Base64.bufferFromBase64(base64UrlDecode(data));
 }
