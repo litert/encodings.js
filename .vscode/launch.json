@@ -7,61 +7,73 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 01 - BASE64Url Encodings",
-            "program": "${workspaceFolder}/src/samples/01-base64url.ts",
+            "name": "[LiteRT/Encodings.js] Example 01 - BASE64Url Encodings",
+            "program": "${workspaceFolder}/src/examples/01-base64url.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
                 "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/samples/*.js"
+                "${workspaceFolder}/examples/*.js"
             ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 02 - Strict-URI Encoding",
-            "program": "${workspaceFolder}/src/samples/02-strict_uri.ts",
+            "name": "[LiteRT/Encodings.js] Example 02 - Strict-URI Encoding",
+            "program": "${workspaceFolder}/src/examples/02-strict_uri.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
                 "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/samples/*.js"
+                "${workspaceFolder}/examples/*.js"
             ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 03 - URL Encodings",
-            "program": "${workspaceFolder}/src/samples/03-urlencode.ts",
+            "name": "[LiteRT/Encodings.js] Example 03 - URL Encodings",
+            "program": "${workspaceFolder}/src/examples/03-urlencode.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
                 "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/samples/*.js"
+                "${workspaceFolder}/examples/*.js"
             ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 04 - Hex API",
-            "program": "${workspaceFolder}/src/samples/04-hex.ts",
+            "name": "[LiteRT/Encodings.js] Example 04 - Hex API",
+            "program": "${workspaceFolder}/src/examples/04-hex.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
                 "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/samples/*.js"
+                "${workspaceFolder}/examples/*.js"
             ]
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "[LiteRT/Encodings.js] Sample 05 - Base62x Encodings",
-            "program": "${workspaceFolder}/src/samples/05-base62x.ts",
+            "name": "[LiteRT/Encodings.js] Example 05 - Base62x Encodings",
+            "program": "${workspaceFolder}/src/examples/05-base62x.ts",
             "sourceMaps": true,
             "cwd": "${workspaceFolder}",
             "outFiles": [
                 "${workspaceFolder}/lib/*.js",
-                "${workspaceFolder}/samples/*.js"
+                "${workspaceFolder}/examples/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[LiteRT/Encodings.js] Example 06 - Base32 Encodings",
+            "program": "${workspaceFolder}/src/examples/06-base32.ts",
+            "sourceMaps": true,
+            "cwd": "${workspaceFolder}",
+            "outFiles": [
+                "${workspaceFolder}/lib/*.js",
+                "${workspaceFolder}/examples/*.js"
             ]
         }
     ]

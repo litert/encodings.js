@@ -6,6 +6,7 @@
 [![GitHub Releases](https://img.shields.io/github/release/litert/encodings.js.svg)](https://github.com/litert/encodings.js/releases "Stable Release")
 
 The buffer-based encoding utility method for node.js.
+
 Following types of encodings are supported:
 
 Name         | Description                     | Binary-Safe
@@ -13,6 +14,7 @@ Name         | Description                     | Binary-Safe
 `base64`     | The standard BASE64 encoding.   | Yes
 `base64url`  | The URL-safe BASE64 encoding.   | Yes
 `base62x`    | The BASE62x encoding.           | Yes
+`base32`     | The standard BASE32 encoding.   | Yes
 `hex`        | The hexadecimal encoding.       | Yes
 `urlencode`  | The purely URL-safe encoding.   | Yes
 `strict_uri` | The extended URL-safe encoding. | No
@@ -65,6 +67,7 @@ const hex = Enc.stringToHex("hello world");             // Encode a string into 
 const b62 = Enc.stringToBase62("hello world");          // Encode a string into BASE62
 const b64 = Enc.stringToBase64("hello world");          // Encode a string into BASE64
 const b64url = Enc.stringToBase64Url("hello world");    // Encode a string into BASE64URL
+const b32 = Enc.stringToBase32("hello world");          // Encode a string into BASE32
 const url = Enc.stringToUrlencode("hello world");       // Encode a string into URL
 const strict = Enc.stringToStrictUri("hello world");    // Encode a string into Strict-URI
 
@@ -74,6 +77,7 @@ Enc.bufferToHex(Buffer.from("hello world"));
 Enc.bufferToBase62(Buffer.from("hello world"));
 Enc.bufferToBase64(Buffer.from("hello world"));
 Enc.bufferToBase64Url(Buffer.from("hello world"));
+Enc.bufferToBase32(Buffer.from("hello world"));
 Enc.bufferToUrlencode(Buffer.from("hello world"));
 Enc.bufferToStrictUri(Buffer.from("hello world"));
 
@@ -81,6 +85,7 @@ Enc.stringFromHex(hex);                         // Decode a hex-encoded data as 
 Enc.stringFromBase62(b62);                      // Decode a BASE62-encoded data as a string
 Enc.stringFromBase64(b64);                      // Decode a BASE64-encoded data as a string
 Enc.stringFromBase64Url(b64url);                // Decode a BASE64URL-encoded data as a string
+Enc.stringFromBase32(b32);                      // Decode a BASE32-encoded data as a string
 Enc.stringFromUrlencode(url);                   // Decode a urlencoded data as a string
 Enc.stringFromStrictUri(strict);                // Decode a Strict-URI-encoded data as a string
 
@@ -88,6 +93,7 @@ Enc.bufferFromHex(hex);
 Enc.bufferFromBase62(b62);
 Enc.bufferFromBase64(b64);
 Enc.bufferFromBase64Url(b64url);
+Enc.bufferFromBase32(b32);
 Enc.bufferFromUrlencode(url);
 Enc.bufferFromStrictUri(strict);
 ```

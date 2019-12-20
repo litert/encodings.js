@@ -18,10 +18,32 @@
 
 import * as Enc from "../lib";
 
-const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
+const RAND_SOURCE = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456";
 
-const base62 = Enc.stringToBase62(RAW_DATA);
+function randStr(len: number): string {
 
-console.info(`Base62:       ${base62}`);
+    return Array(len).fill(0).map((v) => RAND_SOURCE[Math.floor(Math.random() * RAND_SOURCE.length)]).join("");
+}
 
-console.info(`RawData:      ${Enc.stringFromBase62(base62)}`);
+for (let i = 0; i < 256; i++) {
+
+    const origin = randStr(i);
+
+    console.info(`Origin:       ${origin}`);
+
+    const base62 = Enc.stringToBase62(origin);
+
+    console.info(`Base62:       ${base62}`);
+
+    const decoded = Enc.stringFromBase62(base62);
+
+    if (origin === decoded) {
+
+        console.info(`Decoded:      Matched`);
+    }
+    else {
+
+        console.error(`Decoded:      ${decoded}`);
+        break;
+    }
+}

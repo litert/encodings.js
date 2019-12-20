@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+export * from "./encodings/base32";
 export * from "./encodings/base62";
 export * from "./encodings/base64";
 export * from "./encodings/base64url";
