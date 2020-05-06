@@ -1,5 +1,11 @@
 # Changes Logs
 
+## v2.2.0
+
+- Renamed `base62` to `base62x`.
+
+    > Original `base62` API is reserved but deprecated, and will be removed in next major version.
+
 ## v2.1.0
 
 - Added encoding `base32`.

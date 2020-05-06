@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2020 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,20 @@
 
 export function stringToBase64(data: string): string {
 
-    return Buffer.from(data).toString("base64");
+    return Buffer.from(data).toString('base64');
 }
 
 export function stringFromBase64(data: string): string {
 
-    return Buffer.from(data, "base64").toString();
+    return Buffer.from(data, 'base64').toString();
 }
 
 export function bufferToBase64(data: Buffer): string {
 
-    return data.toString("base64");
+    return data.toString('base64');
 }
 
 export function bufferFromBase64(data: string): Buffer {
 
-    return Buffer.from(data, "base64");
+    return Buffer.from(data, 'base64');
 }

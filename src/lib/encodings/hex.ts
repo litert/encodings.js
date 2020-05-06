@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2020 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,20 @@
 
 export function stringToHex(data: string): string {
 
-    return Buffer.from(data).toString("hex");
+    return Buffer.from(data).toString('hex');
 }
 
 export function stringFromHex(data: string): string {
 
-    return Buffer.from(data, "hex").toString();
+    return Buffer.from(data, 'hex').toString();
 }
 
 export function bufferToHex(data: Buffer): string {
 
-    return data.toString("hex");
+    return data.toString('hex');
 }
 
 export function bufferFromHex(data: string): Buffer {
 
-    return Buffer.from(data, "hex");
+    return Buffer.from(data, 'hex');
 }

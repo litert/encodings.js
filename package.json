@@ -1,6 +1,6 @@
 {
   "name": "@litert/encodings",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "The buffer-based encoding utility method for node.js.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,9 +8,10 @@
     "build": "echo Using TypeScript && tsc -v && tsc -p .",
     "build-watch": "echo Using TypeScript && tsc -v && tsc -w -p .",
     "rebuild": "npm run clean && npm run lint && npm run build",
-    "test": "echo See directory sources/examples",
+    "test": "echo See directory src/examples",
     "clean": "rm -rf lib examples",
-    "lint": "tslint -p . -c tslint.json"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint --ext ts src"
   },
   "repository": {
     "type": "git",
@@ -29,9 +30,21 @@
   "license": "Apache-2.0",
   "typings": "lib/index.d.ts",
   "types": "lib/index.d.ts",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint && npm run typecheck"
+    }
+  },
   "devDependencies": {
     "@types/node": "^12.0.10",
-    "typescript": "^3.5.2"
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.5",
+    "typescript": "^3.2.2"
   },
   "dependencies": {}
 }

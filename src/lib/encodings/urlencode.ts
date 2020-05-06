@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2020 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-export function stringToUrlencode(data: string): string {
-
-    return bufferToUrlencode(Buffer.from(data));
-}
-
-export function stringFromUrlencode(data: string): string {
-
-    return bufferFromUrlencode(data).toString();
-}
 
 export function bufferToUrlencode(data: Buffer): string {
 
@@ -40,11 +30,11 @@ export function bufferToUrlencode(data: Buffer): string {
         }
         else {
 
-            ret.push("%" + b.toString(16).padStart(2, "0"));
+            ret.push('%' + b.toString(16).padStart(2, '0'));
         }
     }
 
-    return ret.join("");
+    return ret.join('');
 }
 
 export function bufferFromUrlencode(data: string): Buffer {
@@ -53,7 +43,7 @@ export function bufferFromUrlencode(data: string): Buffer {
 
     for (let i = 0; i < data.length; i++) {
 
-        if (data[i] === "%") {
+        if (data[i] === '%') {
 
             ret.push(parseInt(data.substr(i + 1, 2), 16));
 
@@ -66,4 +56,14 @@ export function bufferFromUrlencode(data: string): Buffer {
     }
 
     return Buffer.from(ret);
+}
+
+export function stringToUrlencode(data: string): string {
+
+    return bufferToUrlencode(Buffer.from(data));
+}
+
+export function stringFromUrlencode(data: string): string {
+
+    return bufferFromUrlencode(data).toString();
 }

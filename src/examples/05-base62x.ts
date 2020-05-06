@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2020 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@
 
 // tslint:disable:no-console
 
-import * as Enc from "../lib";
+import * as Enc from '../lib';
 
-const RAND_SOURCE = "abcdefghijlkmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456";
+const RAND_SOURCE = 'abcdefghijlkmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456';
 
 function randStr(len: number): string {
 
-    return Array(len).fill(0).map((v) => RAND_SOURCE[Math.floor(Math.random() * RAND_SOURCE.length)]).join("");
+    return Array(len).fill(0).map(() => RAND_SOURCE[Math.floor(Math.random() * RAND_SOURCE.length)]).join('');
 }
 
 for (let i = 0; i < 256; i++) {
@@ -31,15 +31,15 @@ for (let i = 0; i < 256; i++) {
 
     console.info(`Origin:       ${origin}`);
 
-    const base62 = Enc.stringToBase62(origin);
+    const base62x = Enc.stringToBase62x(origin);
 
-    console.info(`Base62:       ${base62}`);
+    console.info(`Base62x:       ${base62x}`);
 
-    const decoded = Enc.stringFromBase62(base62);
+    const decoded = Enc.stringFromBase62x(base62x);
 
     if (origin === decoded) {
 
-        console.info(`Decoded:      Matched`);
+        console.info('Decoded:      Matched');
     }
     else {
 

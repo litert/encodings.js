@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2020 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@
  */
 export function stringToStrictUri(text: string): string {
 
-    return encodeURIComponent(text).replace(/([-!*()~'\._])/g, function(s): string {
-        return "%" + s.charCodeAt(0).toString(16).padStart(2, "0");
+    return encodeURIComponent(text).replace(/([-!*()~'._])/g, function(s): string {
+        return '%' + s.charCodeAt(0).toString(16).padStart(2, '0');
     });
 }
 

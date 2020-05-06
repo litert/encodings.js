@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Angus.Fenying <fenying@litert.org>
+ * Copyright 2020 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 // tslint:disable:no-console
 
-import * as Enc from "../lib";
+import * as Enc from '../lib';
 
-const RAW_DATA = "Hello world!@#$%^&*()~`\":<>?,./[]{}\\|-=_+;'";
+const RAW_DATA = 'Hello world!@#$%^&*()~`":<>?,./[]{}\\|-=_+;\'';
 
 const uri = encodeURIComponent(RAW_DATA);
 
