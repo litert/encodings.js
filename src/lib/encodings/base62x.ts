@@ -22,11 +22,11 @@ const ALPHA_CHAR_TABLE = [
 
 export const DEFAULT_X_TAG: string = 'x';
 
-let _xtag: string = DEFAULT_X_TAG;
+let xtag: string = DEFAULT_X_TAG;
 
-let _b2aTable: string[] = [];
+let b2aTable: string[] = [];
 
-let _a2bTable: Record<string, number> = {};
+let a2bTable: Record<string, number> = {};
 
 export function initBase62x(tag: string): void {
 
@@ -35,21 +35,21 @@ export function initBase62x(tag: string): void {
         throw new RangeError('Range of xtag must be 0-9, a-z or A-Z.');
     }
 
-    _xtag = tag;
+    xtag = tag;
 
-    const xPos = ALPHA_CHAR_TABLE.indexOf(_xtag);
+    const xPos = ALPHA_CHAR_TABLE.indexOf(xtag);
 
-    _b2aTable = [
+    b2aTable = [
         ...ALPHA_CHAR_TABLE.slice(0, xPos),
         ...ALPHA_CHAR_TABLE.slice(xPos + 1),
-        ...[1, 2, 3].map((x) => `${_xtag}${x}`)
+        ...[1, 2, 3].map((x) => `${xtag}${x}`)
     ];
 
-    _a2bTable = {};
+    a2bTable = {};
 
-    for (let i = 0; i < _b2aTable.length; i++) {
+    for (let i = 0; i < b2aTable.length; i++) {
 
-        _a2bTable[_b2aTable[i]] = i;
+        a2bTable[b2aTable[i]] = i;
     }
 }
 
@@ -62,23 +62,23 @@ export function bufferToBase62x(data: Buffer): string {
         switch (data.length - i) {
             case 1:
                 ret.push(
-                    _b2aTable[data[i] >> 2],
-                    _b2aTable[data[i] & 0x03]
+                    b2aTable[data[i] >> 2],
+                    b2aTable[data[i] & 0x03]
                 );
                 break;
             case 2:
                 ret.push(
-                    _b2aTable[data[i] >> 2],
-                    _b2aTable[((data[i] & 0x03) << 4) | (data[i + 1] >> 4)],
-                    _b2aTable[data[i + 1] & 0x0F]
+                    b2aTable[data[i] >> 2],
+                    b2aTable[((data[i] & 0x03) << 4) | (data[i + 1] >> 4)],
+                    b2aTable[data[i + 1] & 0x0F]
                 );
                 break;
             default: // >= 3
                 ret.push(
-                    _b2aTable[data[i] >> 2],
-                    _b2aTable[((data[i] & 0x03) << 4) | (data[i + 1] >> 4)],
-                    _b2aTable[((data[i + 1] & 0x0F) << 2) | (data[i + 2] >> 6)],
-                    _b2aTable[data[i + 2] & 0x3F]
+                    b2aTable[data[i] >> 2],
+                    b2aTable[((data[i] & 0x03) << 4) | (data[i + 1] >> 4)],
+                    b2aTable[((data[i + 1] & 0x0F) << 2) | (data[i + 2] >> 6)],
+                    b2aTable[data[i + 2] & 0x3F]
                 );
                 break;
         }
@@ -88,8 +88,6 @@ export function bufferToBase62x(data: Buffer): string {
 }
 
 export function bufferFromBase62x(input: string): Buffer {
-
-    const xtag = _xtag;
 
     let bytes: number[] = [];
 
@@ -112,7 +110,7 @@ export function bufferFromBase62x(input: string): Buffer {
                 i++;
             }
 
-            const b: number = _a2bTable[a];
+            const b: number = a2bTable[a];
 
             if (b === undefined) {
 
@@ -130,9 +128,9 @@ export function bufferFromBase62x(input: string): Buffer {
             case 2:
 
                 /**
-             * 1111_11_11
-             * 1111_11 11
-             */
+                 * 1111_11_11
+                 * 1111_11 11
+                 */
 
                 bytes.push(bs[0] << 2 | bs[1]);
 
@@ -141,9 +139,9 @@ export function bufferFromBase62x(input: string): Buffer {
             case 3:
 
                 /**
-             * 1111_11_11 1111_1111
-             * 1111_11 11_1111 1111
-             */
+                 * 1111_11_11 1111_1111
+                 * 1111_11 11_1111 1111
+                 */
 
                 bytes.push(
                     bs[0] << 2 | (bs[1] >> 4),
@@ -155,9 +153,9 @@ export function bufferFromBase62x(input: string): Buffer {
             case 4:
 
                 /**
-             * 1111_11_11 1111_1111 11_11_1111
-             * 1111_11 11_1111 1111_11 11_1111
-             */
+                 * 1111_11_11 1111_1111 11_11_1111
+                 * 1111_11 11_1111 1111_11 11_1111
+                 */
 
                 bytes.push(
                     bs[0] << 2 | (bs[1] >> 4),

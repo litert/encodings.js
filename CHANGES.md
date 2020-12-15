@@ -1,5 +1,9 @@
 # Changes Logs
 
+## vNEXT
+
+- config(deps): updated dependencies.
+
 ## v2.2.0
 
 - Renamed `base62` to `base62x`.

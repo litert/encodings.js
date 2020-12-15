@@ -17,6 +17,7 @@ module.exports = {
             'encoding',
             'doc',
             'lint',
+            'deps',
             'branch',
             'global'
         ]],
