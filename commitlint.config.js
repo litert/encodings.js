@@ -19,7 +19,7 @@ module.exports = {
             'lint',
             'deps',
             'branch',
-            'global'
+            'project'
         ]],
         'scope-empty': [2, 'never'],
         'subject-min-length': [2, 'always', 5],

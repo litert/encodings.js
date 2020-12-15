@@ -4,7 +4,7 @@
   "description": "The buffer-based encoding utility method for node.js.",
   "main": "lib/index.js",
   "scripts": {
-    "prepare": "npm run rebuild",
+    "prepublishOnly": "npm run rebuild",
     "build": "echo Using TypeScript && tsc -v && tsc -p .",
     "build-watch": "echo Using TypeScript && tsc -v && tsc -w -p .",
     "rebuild": "npm run clean && npm run lint && npm run build",
