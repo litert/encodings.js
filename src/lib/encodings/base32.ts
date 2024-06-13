@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Angus.Fenying <fenying@litert.org>
+ * Copyright 2024 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,12 @@ for (let i = 0; i < BASE32_CHARS.length; i++) {
 
 export const PADDING = '='.charCodeAt(0);
 
+/**
+ * Encode a buffer to a BASE32 encoding string.
+ */
 export function bufferToBase32(data: Buffer): string {
 
-    let ret: Buffer = Buffer.alloc(Math.ceil(data.length / 5) * 8);
+    const ret: Buffer = Buffer.alloc(Math.ceil(data.length / 5) * 8);
 
     for (let i = 0, j = 0; i < data.length; i += 5) {
 
@@ -37,8 +40,8 @@ export function bufferToBase32(data: Buffer): string {
             case 1:
 
                 /**
-             * 11111 111|00 00000 0|0000 0000|0 00000 00|000 00000
-             */
+                 * 11111 111|00 00000 0|0000 0000|0 00000 00|000 00000
+                 */
                 ret[j++] = BITS_TO_CHARS[data[i] >> 3];
                 ret[j++] = BITS_TO_CHARS[(data[i] & 0x07) << 2];
                 ret[j++] = PADDING;
@@ -51,8 +54,8 @@ export function bufferToBase32(data: Buffer): string {
             case 2:
 
                 /**
-             * 11111 111|11 11111 1|0000 0000|0 00000 00|000 00000
-             */
+                 * 11111 111|11 11111 1|0000 0000|0 00000 00|000 00000
+                 */
                 ret[j++] = BITS_TO_CHARS[data[i] >> 3];
                 ret[j++] = BITS_TO_CHARS[((data[i] & 0x07) << 2) | (data[i + 1] >> 6)];
                 ret[j++] = BITS_TO_CHARS[(data[i + 1] >> 1) & 0x1F];
@@ -65,8 +68,8 @@ export function bufferToBase32(data: Buffer): string {
             case 3:
 
                 /**
-             * 11111 111|11 11111 1|1111 1111|0 00000 00|000 00000
-             */
+                 * 11111 111|11 11111 1|1111 1111|0 00000 00|000 00000
+                 */
                 ret[j++] = BITS_TO_CHARS[data[i] >> 3];
                 ret[j++] = BITS_TO_CHARS[((data[i] & 0x07) << 2) | (data[i + 1] >> 6)];
                 ret[j++] = BITS_TO_CHARS[(data[i + 1] >> 1) & 0x1F];
@@ -79,8 +82,8 @@ export function bufferToBase32(data: Buffer): string {
             case 4:
 
                 /**
-             * 11111 111|11 11111 1|1111 1111|1 11111 11|000 00000
-             */
+                 * 11111 111|11 11111 1|1111 1111|1 11111 11|000 00000
+                 */
                 ret[j++] = BITS_TO_CHARS[data[i] >> 3];
                 ret[j++] = BITS_TO_CHARS[((data[i] & 0x07) << 2) | (data[i + 1] >> 6)];
                 ret[j++] = BITS_TO_CHARS[(data[i + 1] >> 1) & 0x1F];
@@ -91,9 +94,9 @@ export function bufferToBase32(data: Buffer): string {
                 ret[j++] = PADDING;
                 break;
             default: // >= 5
-            /**
-             * 11111 111|11 11111 1|1111 1111|1 11111 11|111 11111
-             */
+                /**
+                 * 11111 111|11 11111 1|1111 1111|1 11111 11|111 11111
+                 */
                 ret[j++] = BITS_TO_CHARS[data[i] >> 3];
                 ret[j++] = BITS_TO_CHARS[((data[i] & 0x07) << 2) | (data[i + 1] >> 6)];
                 ret[j++] = BITS_TO_CHARS[(data[i + 1] >> 1) & 0x1F];
@@ -109,6 +112,9 @@ export function bufferToBase32(data: Buffer): string {
     return ret.toString();
 }
 
+/**
+ * Decode a BASE32 encoding string into a buffer.
+ */
 export function bufferFromBase32(input: string): Buffer {
 
     if (input.length & 0x7) {
@@ -136,8 +142,8 @@ export function bufferFromBase32(input: string): Buffer {
             case 0: // no padding
 
                 /**
-             * 11111 111|11 11111 1|1111 1111|1 11111 11|111 11111
-             */
+                 * 11111 111|11 11111 1|1111 1111|1 11111 11|111 11111
+                 */
                 ret[j++] = (CHARS_TO_BITS[input[i]] << 3) | (CHARS_TO_BITS[input[i + 1]] >> 2);
                 ret[j++] = ((CHARS_TO_BITS[input[i + 1]] & 0x03) << 6)
                      | (CHARS_TO_BITS[input[i + 2]] << 1)
@@ -154,8 +160,8 @@ export function bufferFromBase32(input: string): Buffer {
             case 7: // 1 padding
 
                 /**
-             * 11111 111|11 11111 1|1111 1111|1 11111 11|000 00000
-             */
+                 * 11111 111|11 11111 1|1111 1111|1 11111 11|000 00000
+                 */
                 ret[j++] = (CHARS_TO_BITS[input[i]] << 3) | (CHARS_TO_BITS[input[i + 1]] >> 2);
                 ret[j++] = ((CHARS_TO_BITS[input[i + 1]] & 0x03) << 6)
                      | (CHARS_TO_BITS[input[i + 2]] << 1)
@@ -166,13 +172,13 @@ export function bufferFromBase32(input: string): Buffer {
                      | (CHARS_TO_BITS[input[i + 5]] << 2)
                      | (CHARS_TO_BITS[input[i + 6]] >> 3);
 
-                return ret.slice(0, -1);
+                return ret.subarray(0, -1);
 
             case 5: // 3 padding
 
                 /**
-             * 11111 111|11 11111 1|1111 1111|0 00000 00|000 00000
-             */
+                 * 11111 111|11 11111 1|1111 1111|0 00000 00|000 00000
+                 */
                 ret[j++] = (CHARS_TO_BITS[input[i]] << 3) | (CHARS_TO_BITS[input[i + 1]] >> 2);
                 ret[j++] = ((CHARS_TO_BITS[input[i + 1]] & 0x03) << 6)
                      | (CHARS_TO_BITS[input[i + 2]] << 1)
@@ -180,28 +186,28 @@ export function bufferFromBase32(input: string): Buffer {
                 ret[j++] = ((CHARS_TO_BITS[input[i + 3]] & 0x0F) << 4)
                      | (CHARS_TO_BITS[input[i + 4]] >> 1);
 
-                return ret.slice(0, -2);
+                return ret.subarray(0, -2);
 
             case 4: // 4 padding
 
                 /**
-             * 11111 111|11 11111 1|0000 0000|0 00000 00|000 00000
-             */
+                 * 11111 111|11 11111 1|0000 0000|0 00000 00|000 00000
+                 */
                 ret[j++] = (CHARS_TO_BITS[input[i]] << 3) | (CHARS_TO_BITS[input[i + 1]] >> 2);
                 ret[j++] = ((CHARS_TO_BITS[input[i + 1]] & 0x03) << 6)
                      | (CHARS_TO_BITS[input[i + 2]] << 1)
                      | (CHARS_TO_BITS[input[i + 3]] >> 4);
 
-                return ret.slice(0, -3);
+                return ret.subarray(0, -3);
 
             case 2: // 6 padding
 
                 /**
-             * 11111 111|00 00000 0|0000 0000|0 00000 00|000 00000
-             */
+                 * 11111 111|00 00000 0|0000 0000|0 00000 00|000 00000
+                 */
                 ret[j++] = (CHARS_TO_BITS[input[i]] << 3) | (CHARS_TO_BITS[input[i + 1]] >> 2);
 
-                return ret.slice(0, -4);
+                return ret.subarray(0, -4);
 
             default:
 
@@ -212,11 +218,17 @@ export function bufferFromBase32(input: string): Buffer {
     return ret;
 }
 
+/**
+ * Encode a string into a BASE32 encoding string.
+ */
 export function stringToBase32(data: string): string {
 
     return bufferToBase32(Buffer.from(data));
 }
 
+/**
+ * Decode a BASE32 encoding string into a string.
+ */
 export function stringFromBase32(data: string): string {
 
     return bufferFromBase32(data).toString();

@@ -2,4 +2,7 @@
 /lib/
 /benchmarks/
 /examples/
+/tests/
+/src/examples/
+/src/tests/
 /node_modules/

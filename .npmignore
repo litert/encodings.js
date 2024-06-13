@@ -8,6 +8,8 @@
 /tslint.json
 /docs/
 /examples/
+/tests/
 /commitlint.config.js
 /.eslintrc
 /.eslintignore
+/.husky/

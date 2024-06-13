@@ -1,8 +1,11 @@
 # Changes Logs
 
-## vNEXT
+## v2.3.0
 
 - config(deps): updated dependencies.
+- fix(encoding): fixed decoding of the `urlencode`.
+- build(test): added test cases.
+- build(project): upgraded the minimum version of Node.js to `v14`.
 
 ## v2.2.0
 

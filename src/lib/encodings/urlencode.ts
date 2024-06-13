@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Angus.Fenying <fenying@litert.org>
+ * Copyright 2024 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
+/**
+ * Encode a buffer to a URL-encoding string.
+ */
 export function bufferToUrlencode(data: Buffer): string {
 
-    let ret: string[] = [];
+    const ret: string[] = [];
 
-    for (let b of data) {
+    for (const b of data) {
 
         if (
             (b >= 97 && b <= 122) ||
@@ -37,15 +40,18 @@ export function bufferToUrlencode(data: Buffer): string {
     return ret.join('');
 }
 
+/**
+ * Decode a URL-encoding string into a buffer.
+ */
 export function bufferFromUrlencode(data: string): Buffer {
 
-    let ret: number[] = [];
+    const ret: number[] = [];
 
     for (let i = 0; i < data.length; i++) {
 
         if (data[i] === '%') {
 
-            ret.push(parseInt(data.substr(i + 1, 2), 16));
+            ret.push(parseInt(data.slice(i + 1, i + 3), 16));
 
             i += 2;
         }
@@ -58,11 +64,17 @@ export function bufferFromUrlencode(data: string): Buffer {
     return Buffer.from(ret);
 }
 
+/**
+ * Encode a string to a URL-encoding string.
+ */
 export function stringToUrlencode(data: string): string {
 
     return bufferToUrlencode(Buffer.from(data));
 }
 
+/**
+ * Decode a URL-encoding string into a string.
+ */
 export function stringFromUrlencode(data: string): string {
 
     return bufferFromUrlencode(data).toString();

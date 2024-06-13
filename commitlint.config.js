@@ -6,17 +6,13 @@ module.exports = {
             'feat',
             'fix',
             'add',
-            'test',
-            'refactor',
-            'perf',
-            'style',
-            'config',
-            'merge'
+            'build'
         ]],
         'scope-enum': [2, 'always', [
             'encoding',
             'doc',
             'lint',
+            'test',
             'deps',
             'branch',
             'project'

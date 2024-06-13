@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 Angus.Fenying <fenying@litert.org>
+ * Copyright 2024 Angus.Fenying <fenying@litert.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,27 +22,30 @@ const ALPHA_CHAR_TABLE = [
 
 export const DEFAULT_X_TAG: string = 'x';
 
-let xtag: string = DEFAULT_X_TAG;
+let xTag: string = DEFAULT_X_TAG;
 
 let b2aTable: string[] = [];
 
 let a2bTable: Record<string, number> = {};
 
+/**
+ * Initialize the base62x encoding with a custom x-tag.
+ */
 export function initBase62x(tag: string): void {
 
     if (!ALPHA_CHAR_TABLE.includes(tag)) {
 
-        throw new RangeError('Range of xtag must be 0-9, a-z or A-Z.');
+        throw new RangeError('Range of x-tag must be 0-9, a-z or A-Z.');
     }
 
-    xtag = tag;
+    xTag = tag;
 
-    const xPos = ALPHA_CHAR_TABLE.indexOf(xtag);
+    const xPos = ALPHA_CHAR_TABLE.indexOf(xTag);
 
     b2aTable = [
         ...ALPHA_CHAR_TABLE.slice(0, xPos),
         ...ALPHA_CHAR_TABLE.slice(xPos + 1),
-        ...[1, 2, 3].map((x) => `${xtag}${x}`)
+        ...[1, 2, 3].map((x) => `${xTag}${x}`)
     ];
 
     a2bTable = {};
@@ -53,9 +56,12 @@ export function initBase62x(tag: string): void {
     }
 }
 
+/**
+ * Encode a buffer to a base62x encoding string.
+ */
 export function bufferToBase62x(data: Buffer): string {
 
-    let ret: string[] = [];
+    const ret: string[] = [];
 
     for (let i = 0; i < data.length; i += 3) {
 
@@ -87,13 +93,16 @@ export function bufferToBase62x(data: Buffer): string {
     return ret.join('');
 }
 
+/**
+ * Decode a base62x encoding string into a buffer.
+ */
 export function bufferFromBase62x(input: string): Buffer {
 
-    let bytes: number[] = [];
+    const bytes: number[] = [];
 
     for (let i = 0; i < input.length; i += 4) {
 
-        let bs: number[] = [];
+        const bs: number[] = [];
 
         for (let j = i; bs.length < 4 && j < input.length; j++) {
 
@@ -104,7 +113,7 @@ export function bufferFromBase62x(input: string): Buffer {
                 break;
             }
 
-            if (a === xtag) {
+            if (a === xTag) {
 
                 a += input[++j];
                 i++;
@@ -172,11 +181,17 @@ export function bufferFromBase62x(input: string): Buffer {
 
 initBase62x(DEFAULT_X_TAG);
 
+/**
+ * Encode a string to a base62x encoding string.
+ */
 export function stringToBase62x(data: string): string {
 
     return bufferToBase62x(Buffer.from(data));
 }
 
+/**
+ * Decode a base62x encoding string into a string.
+ */
 export function stringFromBase62x(data: string): string {
 
     return bufferFromBase62x(data).toString();
